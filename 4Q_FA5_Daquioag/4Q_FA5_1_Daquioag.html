@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shape generator</title>
+</head>
+<body>
+    <script>
+        // Function to prompt for a number until a valid number is entered
+        function getNumberInput() {
+            let number;
+            while (true) {
+                let input = prompt("please enter a number:");
+                number = parseInt(input);
+                if (!isNaN(number)) {
+                    break;
+                } else {
+                    alert("yeah sure that's definitely a number bud (invalid input)");
+                }
+            }
+            return number;
+        }
+
+        // Function to generate a rectangle shape
+        function generateRectangle(number) {
+            let result = `number inputted: ${number}\n`;
+            for (let i = number; i > 0; i--) {
+                for (let j = 0; j < number; j++) {
+                    result += i + " ";
+                }
+                result += "\n";
+            }
+            return result;
+        }
+
+        // Function to generate a triangle shape
+        function generateTriangle(number) {
+            let result = `number inputted: ${number}\n`;
+            for (let i = number; i > 0; i--) {
+                for (let j = 0; j < i; j++) {
+                    result += i + " ";
+                }
+                result += "\n";
+            }
+            return result;
+        }
+
+        // Main function to run the shape generator
+        function main() {
+            const number = getNumberInput();
+            let output = "";
+            if (number % 2 === 1) {
+                output = generateRectangle(number);
+            } else {
+                output = generateTriangle(number);
+            }
+
+            // Output the result to the webpage
+            const pre = document.createElement("pre");
+            pre.textContent = output;
+            document.body.appendChild(pre);
+        }
+
+        // Run the main function
+        main();
+    </script>
+</body>
+</html>

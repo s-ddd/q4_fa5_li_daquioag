@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>extremely scuffed contacts list</title>
+</head>
+<body>
+    <h1>extremely scuffed contacts list</h1>
+    <input type="text" id="contactInput" placeholder="Enter a name">
+    <button id="addButton">add</button>
+    <button id="removeButton">remove</button>
+    
+    <div id="contactList"></div>
+
+    <script>
+        // JavaScript code to manage contacts list
+        const contacts = [];
+        const maxContacts = 7;
+
+        const contactInput = document.getElementById('contactInput');
+        const addButton = document.getElementById('addButton');
+        const removeButton = document.getElementById('removeButton');
+        const contactListDiv = document.getElementById('contactList');
+
+        function updateContactList() {
+            contactListDiv.innerHTML = contacts.join(' ');
+        }
+
+        addButton.addEventListener('click', () => {
+            const newContact = contactInput.value.trim();
+            if (newContact) {
+                if (contacts.length >= maxContacts) {
+                    contacts.shift();
+                }
+                contacts.push(newContact);
+                updateContactList();
+                contactInput.value = '';  // Clear the input box
+            }
+        });
+
+        removeButton.addEventListener('click', () => {
+            contacts.pop();
+            updateContactList();
+        });
+
+        // Initial display update
+        updateContactList();
+    </script>
+</body>
+</html>
